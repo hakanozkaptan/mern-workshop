@@ -1,11 +1,13 @@
 import React, { Component, createContext } from 'react';
 import axios from 'axios';
 
+import { ActionEnum } from 'enums/ActionEnum';
+
 const Context = createContext();
 
 const reducer = (prevState, action) => {
   switch (action.type) {
-    case 'TOGGLE':
+    case ActionEnum.TOGGLE:
       return {
         todos: prevState.todos.map(todo => {
           if (todo._id === action.payload) {
@@ -14,11 +16,11 @@ const reducer = (prevState, action) => {
           return todo;
         })
       };
-    case 'REMOVE':
+    case ActionEnum.REMOVE:
       return {
         todos: prevState.todos.filter(todo => todo._id !== action.payload)
       };
-    case 'ADD':
+    case ActionEnum.ADD:
       return {
         todos: [...prevState.todos, action.payload]
       };

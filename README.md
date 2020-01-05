@@ -19,6 +19,7 @@ yarn app
 # NEXT CHAPTERS
 
 - React
+  - ~~Enums~~
   - ES6+ `async await`
   - PropTypes
   - React Hooks
