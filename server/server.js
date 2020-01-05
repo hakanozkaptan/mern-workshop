@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+var config = require('./config');
+
 const app = express();
 app.use(express.json());
 
-const db = 'mongodb://localhost:27017/mernApp';
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(config.db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log('connected to mongoDB'))
-  .catch(err => console.log(err));
+  .catch(error => console.log(error));
 
 const todoSchema = new mongoose.Schema({
   title: String,
@@ -35,6 +36,8 @@ app.delete('/todos/:id', (req, res) => {
   Todo.findByIdAndDelete(req.params.id).then(() => res.json({ remove: true }));
 });
 
-app.listen(5000, () => {
-  console.log('server is running on 5000');
+const port = process.env.port || 5000;
+
+app.listen(port, () => {
+  console.log(`server is running on ${port}`);
 });
