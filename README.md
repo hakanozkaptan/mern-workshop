@@ -20,8 +20,8 @@ yarn app
 
 - React
   - ~~Enums~~
+  - ~~PropTypes~~
   - ES6+ `async await`
-  - PropTypes
   - React Hooks
     - UseState and UseEffect
     - React Hook Form

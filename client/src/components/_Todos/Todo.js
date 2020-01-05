@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { Consumer } from 'context/context';
@@ -13,7 +14,7 @@ export class Todo extends Component {
   };
 
   render() {
-    const { title, complete, _id: id } = this.props.todo;
+    const { todo: { title, complete, _id: id } = {} } = this.props;
     return (
       <Consumer>
         {value => {
@@ -40,3 +41,7 @@ export class Todo extends Component {
     );
   }
 }
+
+Todo.propTypes = {
+  todo: PropTypes.object
+};

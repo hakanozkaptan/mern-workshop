@@ -8,7 +8,7 @@ export class Todos extends Component {
     return (
       <Consumer>
         {value => {
-          const { todos } = value;
+          const { todos = {} } = value;
           return todos.map((todo, index) => <Todo todo={todo} key={`${todo.id}${index}`} />);
         }}
       </Consumer>
