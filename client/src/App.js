@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Header, AddTodo, Todos } from 'components';
-import { Provider } from 'context/context';
+import { Provider } from 'context';
 
 import './App.css';
 

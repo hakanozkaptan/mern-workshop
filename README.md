@@ -21,8 +21,9 @@ yarn app
 - React
   - ~~Enums~~
   - ~~PropTypes~~
-  - ES6+ `async await`
+  - ~~ES6+ `async await`~~
   - React Hooks
     - UseState and UseEffect
     - React Hook Form
   - Test Jest and Enzyme
+  - Sentry

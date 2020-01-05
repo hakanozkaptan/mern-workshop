@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import { Consumer } from 'context/context';
+import { Consumer } from 'context';
 
 export class Todo extends Component {
-  toogle = (id, dispatch) => {
+  toogle = async (id, dispatch) => {
     dispatch({ type: 'TOGGLE', payload: id });
   };
 
-  remove = (id, dispatch) => {
-    axios.delete(`/todos/${id}`).then(() => dispatch({ type: 'REMOVE', payload: id }));
+  remove = async (id, dispatch) => {
+    try {
+      const removedTodo = (await axios.delete(`/todos/${id}`)) || false;
+      if (removedTodo && removedTodo.data.remove) {
+        dispatch({ type: 'REMOVE', payload: id });
+      } else {
+        console.log(`${id} is not removed`);
+      }
+    } catch (error) {
+      console.log('Error', error);
+    }
   };
 
   render() {

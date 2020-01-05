@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Consumer } from 'context/context';
+import { Consumer } from 'context';
 import { Todo } from 'components';
 
 export class Todos extends Component {

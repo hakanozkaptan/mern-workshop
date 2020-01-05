@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { Consumer } from 'context/context';
+import { Consumer } from 'context';
+import { Button } from 'components';
+import { ActionEnum } from 'enums/ActionEnum';
 
 export class AddTodo extends Component {
   state = {
@@ -16,22 +18,23 @@ export class AddTodo extends Component {
     });
   };
 
-  add = (dispatch, e) => {
+  add = async (dispatch, e) => {
     e.preventDefault();
     const newTodo = this.state;
-    axios
-      .post('/todos', newTodo)
-      .then(res => {
-        dispatch({ type: 'ADD', payload: res.data });
+    try {
+      const addedTodo = await axios.post('/todos', newTodo);
+      dispatch({ type: ActionEnum.ADD, payload: addedTodo.data });
 
-        this.setState({
-          title: ''
-        });
-      })
-      .catch(err => console.log('error=>', err));
+      this.setState({
+        title: ''
+      });
+    } catch (error) {
+      console.log('error=>', error);
+    }
   };
 
   render() {
+    const { title } = this.state;
     return (
       <Consumer>
         {value => {
@@ -43,11 +46,9 @@ export class AddTodo extends Component {
                 type='text'
                 className='form-control rounded-0'
                 placeholder='Add your Todo'
-                value={this.state.title}
+                value={title}
               />
-              <button type='submit' className='form-control rounded-0 btn-secondary'>
-                Add Todo
-              </button>
+              <Button />
             </form>
           );
         }}
