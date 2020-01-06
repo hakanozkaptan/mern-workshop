@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import styled from 'styled-components';
 
 import { Consumer } from 'context';
+
+const H3 = styled.h3`
+  text-decoration: ${props => (props.complete ? 'line-through' : 'none')};
+`;
 
 export const Todo = ({ todo: { title, complete, _id: id } = {} }) => {
   const toogle = async (id, dispatch) => {
@@ -27,12 +32,9 @@ export const Todo = ({ todo: { title, complete, _id: id } = {} }) => {
       {value => {
         const { dispatch } = value;
         return (
-          <h3
-            className='text-dark text-center p-1 bg-light'
-            style={{ textDecoration: complete ? 'line-through' : 'none' }}
-          >
+          <H3 complete={complete} className='text-dark text-center p-1 bg-light'>
             <i
-              className='far fa-times-circle fa-sm float-left m-1 text-danger cursor-pointer'
+              className='far fa-times-circle fa-sm float-left m-1 text-danger'
               onClick={() => remove(id, dispatch)}
             />
             {title}
@@ -41,7 +43,7 @@ export const Todo = ({ todo: { title, complete, _id: id } = {} }) => {
               className='m-2 float-right'
               onChange={() => toogle(id, dispatch)}
             />
-          </h3>
+          </H3>
         );
       }}
     </Consumer>

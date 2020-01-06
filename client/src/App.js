@@ -1,20 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { Header, AddTodo, Todos } from 'components';
 import { Provider } from 'context';
 
-import './App.css';
+const AppContainer = styled.div`
+  max-width: 35rem;
+  margin: auto;
+  text-align: center;
+`;
 
-function App() {
-  return (
-    <Provider>
-      <div className='app'>
-        <Header />
-        <AddTodo />
-        <Todos />
-      </div>
-    </Provider>
-  );
-}
+const App = () => (
+  <Provider>
+    <AppContainer>
+      <Header />
+      <AddTodo />
+      <Todos />
+    </AppContainer>
+  </Provider>
+);
 
 export default App;

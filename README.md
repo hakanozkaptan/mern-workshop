@@ -22,9 +22,8 @@ yarn app
   - ~~Enums~~
   - ~~PropTypes~~
   - ~~ES6+ `async await`~~
-  - Styled Component
-  - React Hooks
-    - UseState and UseEffect
+  - ~~Styled Component~~
+  - ~~React Hooks~~
     - React Hook Form
   - Test Jest and Enzyme
   - Sentry
