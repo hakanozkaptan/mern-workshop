@@ -22,6 +22,7 @@ yarn app
   - ~~Enums~~
   - ~~PropTypes~~
   - ~~ES6+ `async await`~~
+  - Styled Component
   - React Hooks
     - UseState and UseEffect
     - React Hook Form
