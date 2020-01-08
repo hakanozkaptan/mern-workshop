@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "port=5000 nodemon server.js",
+    "server": "port=5050 nodemon server.js",
     "client": "cd .. && cd client && yarn start",
     "app": "concurrently \"yarn server\" \"yarn client\""
   },

@@ -21,22 +21,44 @@ const todoSchema = new mongoose.Schema({
 
 const Todo = mongoose.model('todo', todoSchema);
 
-app.get('/todos', (req, res) => {
-  Todo.find().then(todo => res.json(todo));
+app.get('/todos', async (req, res) => {
+  try {
+    const todos = await Todo.find();
+    return res.status(200).json(todos);
+  } catch (error) {
+    console.log(`Error, get /todos ==>, ${error}`);
+    return res.status(500);
+  }
 });
 
-app.post('/todos', (req, res) => {
-  const newTodo = new Todo({
-    title: req.body.title
-  });
-  newTodo.save().then(todo => res.json(todo));
+app.post('/todos', async (req, res) => {
+  try {
+    const newTodo = new Todo({
+      title: req.body.title
+    });
+    const todo = await newTodo.save();
+    return res.status(201).json(todo);
+  } catch (error) {
+    console.log(`Error, post /todos ==>, ${error}`);
+    return res.status(500);
+  }
 });
 
-app.delete('/todos/:id', (req, res) => {
-  Todo.findByIdAndDelete(req.params.id).then(() => res.json({ remove: true }));
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Todo.findByIdAndDelete(id);
+
+    return res.json({
+      remove: true
+    });
+  } catch (error) {
+    console.log(`Error, delete /todos/:id ==>, ${error}`);
+    return res.status(500);
+  }
 });
 
-const port = process.env.port || 5000;
+const port = process.env.port || 5050;
 
 app.listen(port, () => {
   console.log(`server is running on ${port}`);

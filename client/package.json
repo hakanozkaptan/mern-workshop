@@ -35,7 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5050",
   "devDependencies": {
     "prop-types": "^15.7.2"
   }

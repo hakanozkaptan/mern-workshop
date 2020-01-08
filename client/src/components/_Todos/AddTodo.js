@@ -40,6 +40,7 @@ export const AddTodo = () => {
         return (
           <form onSubmit={e => add(dispatch, e)}>
             <input
+              required
               onChange={update}
               type='text'
               className='form-control rounded-0'
