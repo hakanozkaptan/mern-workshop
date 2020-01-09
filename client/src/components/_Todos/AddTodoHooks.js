@@ -26,7 +26,7 @@ export const useAddTodoForm = callback => {
   const handleSubmit = (dispatch, event) => {
     if (event) event.preventDefault();
     add(dispatch);
-    if (callback) callback();
+    callback();
   };
 
   const handleInputChange = event => {
