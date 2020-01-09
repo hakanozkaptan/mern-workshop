@@ -1,36 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
 import { Consumer } from 'context';
 import { Button } from 'components';
-import { ActionEnum } from 'enums/ActionEnum';
+
+import { useAddTodoForm } from './AddTodoHooks';
 
 export const AddTodo = () => {
-  const id = 1;
-  const complete = false;
-  const [title, setTitle] = useState('');
-
-  const update = e => {
-    setTitle(e.target.value);
+  const { handleSubmit, inputs, handleInputChange } = useAddTodoForm(() => onAdded());
+  const onAdded = () => {
+    inputs.title = '';
   };
 
-  const add = async (dispatch, e) => {
-    e.preventDefault();
-
-    const newTodo = {
-      id,
-      title,
-      complete
-    };
-
-    try {
-      const addedTodo = await axios.post('/todos', newTodo);
-      await dispatch({ type: ActionEnum.ADD, payload: addedTodo.data });
-
-      setTitle('');
-    } catch (error) {
-      console.log('error=>', error);
-    }
+  const submitMe = (dispatch, e) => {
+    handleSubmit(dispatch, e);
   };
 
   return (
@@ -38,15 +20,17 @@ export const AddTodo = () => {
       {value => {
         const { dispatch } = value;
         return (
-          <form onSubmit={e => add(dispatch, e)}>
+          <form onSubmit={e => submitMe(dispatch, e)}>
             <input
-              required
-              onChange={update}
               type='text'
+              name='title'
+              onChange={handleInputChange}
+              value={inputs.title || ''}
+              required
               className='form-control rounded-0'
               placeholder='Add your Todo'
-              value={title}
             />
+
             <Button />
           </form>
         );
