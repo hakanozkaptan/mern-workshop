@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import { Consumer } from 'context';
+import { Context } from 'context';
 
 const H3 = styled.h3`
   text-decoration: ${props => (props.complete ? 'line-through' : 'none')};
 `;
 
 export const Todo = ({ todo: { title, complete, _id: id } = {} }) => {
+  const { dispatch = () => {} } = useContext(Context);
+
   const toogle = async (id, dispatch) => {
     dispatch({ type: 'TOGGLE', payload: id });
   };
@@ -28,25 +30,14 @@ export const Todo = ({ todo: { title, complete, _id: id } = {} }) => {
   };
 
   return (
-    <Consumer>
-      {value => {
-        const { dispatch } = value;
-        return (
-          <H3 complete={complete} className='text-dark text-center p-1 bg-light'>
-            <i
-              className='far fa-times-circle fa-sm float-left m-1 text-danger'
-              onClick={() => remove(id, dispatch)}
-            />
-            {title}
-            <input
-              type='checkbox'
-              className='m-2 float-right'
-              onChange={() => toogle(id, dispatch)}
-            />
-          </H3>
-        );
-      }}
-    </Consumer>
+    <H3 complete={complete} className='text-dark text-center p-1 bg-light'>
+      <i
+        className='far fa-times-circle fa-sm float-left m-1 text-danger'
+        onClick={() => remove(id, dispatch)}
+      />
+      {title}
+      <input type='checkbox' className='m-2 float-right' onChange={() => toogle(id, dispatch)} />
+    </H3>
   );
 };
 

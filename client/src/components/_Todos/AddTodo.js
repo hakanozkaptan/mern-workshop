@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-import { Consumer } from 'context';
+import { Context } from 'context';
 import { Button } from 'components';
 import { ActionEnum } from 'enums/ActionEnum';
 
@@ -10,11 +10,13 @@ export const AddTodo = () => {
   const complete = false;
   const [title, setTitle] = useState('');
 
+  const { dispatch = () => {} } = useContext(Context);
+
   const update = e => {
     setTitle(e.target.value);
   };
 
-  const add = async (dispatch, e) => {
+  const add = async e => {
     e.preventDefault();
 
     const newTodo = {
@@ -34,23 +36,16 @@ export const AddTodo = () => {
   };
 
   return (
-    <Consumer>
-      {value => {
-        const { dispatch } = value;
-        return (
-          <form onSubmit={e => add(dispatch, e)}>
-            <input
-              required
-              onChange={update}
-              type='text'
-              className='form-control rounded-0'
-              placeholder='Add your Todo'
-              value={title}
-            />
-            <Button />
-          </form>
-        );
-      }}
-    </Consumer>
+    <form onSubmit={e => add(e)}>
+      <input
+        required
+        onChange={update}
+        type='text'
+        className='form-control rounded-0'
+        placeholder='Add your Todo'
+        value={title}
+      />
+      <Button />
+    </form>
   );
 };

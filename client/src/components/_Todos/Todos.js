@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import { Consumer } from 'context';
+import { Context } from 'context';
 import { Todo } from 'components';
 
-export const Todos = () => (
-  <Consumer>
-    {value => {
-      const { todos = {} } = value;
-      return todos.map((todo, index) => <Todo todo={todo} key={`${todo.id}${index}`} />);
-    }}
-  </Consumer>
-);
+export const Todos = () => {
+  const { todos = [] } = useContext(Context);
+  return todos.map((todo, index) => <Todo todo={todo} key={`${todo.id}${index}`} />);
+};
