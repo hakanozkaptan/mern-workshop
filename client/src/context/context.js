@@ -1,36 +1,30 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 import { reducer } from 'store';
+import { ActionEnum } from 'enums/ActionEnum';
 
 const Context = createContext();
 
-export class Provider extends Component {
-  state = {
-    todos: [],
-    dispatch: action => this.dispatcher(action)
-  };
+export const Provider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer);
 
-  async componentDidMount() {
-    const data = await axios.get('/todos');
-    try {
-      if (data) {
-        this.setState({
-          todos: data.data
-        });
+  useEffect(() => {
+    const fetchTodos = async () => {
+      dispatch({ type: ActionEnum.FETCH_INIT });
+      try {
+        const result = await axios.get('/todos');
+        if (result) {
+          dispatch({ type: ActionEnum.FETCH_SUCCESS, payload: result.data });
+        }
+      } catch (error) {
+        dispatch({ type: ActionEnum.FETCH_FAILURE });
       }
-    } catch (error) {
-      console.log(`fetching error ${error}`);
-    }
-  }
+    };
+    fetchTodos();
+  }, []);
 
-  dispatcher = action => this.setState(prevState => reducer(prevState, action));
-
-  render() {
-    const { children } = this.props;
-
-    return <Context.Provider value={this.state}>{children}</Context.Provider>;
-  }
-}
+  return <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>;
+};
 
 export { Context };

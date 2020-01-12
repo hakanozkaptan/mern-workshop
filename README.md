@@ -23,7 +23,11 @@ yarn app
   - ~~PropTypes~~
   - ~~ES6+ `async await`~~
   - ~~Styled Component~~
+  - ~~Context Api~~
+    - ~~Context and Provider~~
   - ~~React Hooks~~
-    - React Hook Form
+    - ~~Use Effect~~
+    - ~~Use Reducer~~
+  - React Hook Form
   - Test Jest and Enzyme
   - Sentry

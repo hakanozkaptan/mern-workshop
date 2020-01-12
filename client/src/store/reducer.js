@@ -1,10 +1,30 @@
 import { ActionEnum } from 'enums/ActionEnum';
 
-export const reducer = (prevState, action) => {
+const initialState = {
+  todos: [],
+  isLoading: false
+};
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionEnum.FETCH_INIT:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case ActionEnum.FETCH_SUCCESS:
+      return {
+        isLoading: false,
+        todos: action.payload
+      };
+    case ActionEnum.FETCH_FAILURE:
+      return {
+        ...state,
+        isLoading: true
+      };
     case ActionEnum.TOGGLE:
       return {
-        todos: prevState.todos.map(todo => {
+        todos: state.todos.map(todo => {
           if (todo._id === action.payload) {
             todo.complete = !todo.complete;
           }
@@ -13,13 +33,13 @@ export const reducer = (prevState, action) => {
       };
     case ActionEnum.REMOVE:
       return {
-        todos: prevState.todos.filter(todo => todo._id !== action.payload)
+        todos: state.todos.filter(todo => todo._id !== action.payload)
       };
     case ActionEnum.ADD:
       return {
-        todos: [...prevState.todos, action.payload]
+        todos: [...state.todos, action.payload]
       };
     default:
-      return prevState;
+      return state;
   }
 };
