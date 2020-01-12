@@ -8,8 +8,8 @@ app.use(express.json());
 
 mongoose
   .connect(config.db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(console.log('connected to mongoDB'))
-  .catch(error => console.log(error));
+  .then(console.info('connected to mongoDB'))
+  .catch(error => console.error(error));
 
 const todoSchema = new mongoose.Schema({
   title: String,
@@ -26,7 +26,7 @@ app.get('/todos', async (req, res) => {
     const todos = await Todo.find();
     return res.status(200).json(todos);
   } catch (error) {
-    console.log(`Error, get /todos ==>, ${error}`);
+    console.error(`Error, get /todos ==>, ${error}`);
     return res.status(500);
   }
 });
@@ -39,7 +39,7 @@ app.post('/todos', async (req, res) => {
     const todo = await newTodo.save();
     return res.status(201).json(todo);
   } catch (error) {
-    console.log(`Error, post /todos ==>, ${error}`);
+    console.error(`Error, post /todos ==>, ${error}`);
     return res.status(500);
   }
 });
@@ -53,7 +53,7 @@ app.delete('/todos/:id', async (req, res) => {
       remove: true
     });
   } catch (error) {
-    console.log(`Error, delete /todos/:id ==>, ${error}`);
+    console.error(`Error, delete /todos/:id ==>, ${error}`);
     return res.status(500);
   }
 });
@@ -61,5 +61,5 @@ app.delete('/todos/:id', async (req, res) => {
 const port = process.env.port || 5050;
 
 app.listen(port, () => {
-  console.log(`server is running on ${port}`);
+  console.info(`server is running on ${port}`);
 });

@@ -24,10 +24,10 @@ export const Todo = ({ isLoading, todo: { title, complete, _id: id } = {} }) => 
       if (removedTodo && removedTodo.data.remove) {
         dispatch({ type: ActionEnum.REMOVE, payload: id });
       } else {
-        console.log(`${id} is not removed`);
+        console.info(`${id} is not removed`);
       }
     } catch (error) {
-      console.log('Error', error);
+      console.error('Error', error);
     }
   };
 
