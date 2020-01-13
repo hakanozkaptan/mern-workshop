@@ -5,20 +5,25 @@ import { useFormContext } from 'react-hook-form';
 export const Input = () => {
   const {
     register,
-    formState: { dirty }
+    formState: { dirty },
+    errors
   } = useFormContext();
+
+  const validationSchema = {
+    required: true,
+    maxLength: 100,
+    minLength: 4
+  };
 
   return useMemo(
     () => (
-      <div>
-        <input
-          name='title'
-          ref={register({ required: true, maxLength: 100, minLength: 4 })}
-          type='text'
-          className='form-control rounded-0'
-          placeholder='Add your Todo'
-        />
-      </div>
+      <input
+        name='title'
+        ref={register(validationSchema)}
+        type='text'
+        className='form-control rounded-0'
+        placeholder='Add your Todo'
+      />
     ),
     [dirty]
   );
