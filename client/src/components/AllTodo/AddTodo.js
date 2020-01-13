@@ -9,6 +9,10 @@ import { ActionEnum } from 'enums/ActionEnum';
 
 const ErrorWrapper = styled.div`
   min-height: 2rem;
+  width: 100%;
+  display: block;
+  color: #ff0909;
+  text-align: left;
 `;
 
 export const AddTodo = () => {

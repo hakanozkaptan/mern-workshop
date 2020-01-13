@@ -30,4 +30,6 @@ yarn app
     - ~~Use Reducer~~
   - ~~React Hook Form~~
   - Test Jest and Enzyme
+    - ~~reducer test~~
+    - component test
   - Sentry
