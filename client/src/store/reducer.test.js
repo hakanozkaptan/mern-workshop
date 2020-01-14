@@ -34,3 +34,23 @@ test('Remove Todo', async () => {
 
   expect(newState.todos).toEqual([]);
 });
+
+test('Toogle Todo', async () => {
+  const state = initialState;
+  const newState = reducer(state, {
+    type: 'TOGGLE',
+    payload: 1
+  });
+
+  expect(newState.todos).toEqual([...state.todos]);
+});
+
+test('Fetch Success', async () => {
+  const state = initialState;
+  const newState = reducer(state, {
+    type: 'FETCH_SUCCESS',
+    payload: payload
+  });
+
+  expect(newState.todos).toEqual(payload);
+});
