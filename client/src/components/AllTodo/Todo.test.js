@@ -1,10 +1,9 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 /* eslint-disable no-undef */
 
 import { Provider } from 'context';
-import { reducer } from 'store';
 
 import { Todo } from 'components';
 
