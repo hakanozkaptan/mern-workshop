@@ -29,7 +29,7 @@ yarn app
     - ~~Use Effect~~
     - ~~Use Reducer~~
   - ~~React Hook Form~~
-  - Test Jest and Enzyme
+  - ~~Test Jest and Enzyme~~
     - ~~reducer test~~
     - ~~component test~~
   - Sentry
