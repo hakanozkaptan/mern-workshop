@@ -28,6 +28,7 @@ yarn app
   - ~~React Hooks~~
     - ~~Use Effect~~
     - ~~Use Reducer~~
+    - ~~Use Memo~~
   - ~~React Hook Form~~
   - ~~Test Jest and Enzyme~~
     - ~~reducer test~~
