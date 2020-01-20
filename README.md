@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/hakanozkaptan/mern-workshop/tree/master.svg?style=svg)](https://circleci.com/gh/hakanozkaptan/mern-workshop/tree/master)
+
 # First of all
 
 You need to install `mongodb`, `node` and `yarn` on your pc.
