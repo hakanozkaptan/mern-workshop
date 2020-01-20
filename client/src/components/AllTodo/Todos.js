@@ -10,6 +10,6 @@ export const Todos = () => {
       todos.map((todo, index) => (
         <Todo todo={todo} isLoading={isLoading} isError={isError} key={`${todo.id}${index}`} />
       )),
-    [todos]
+    [todos, isLoading, isError]
   );
 };
