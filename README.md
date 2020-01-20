@@ -33,3 +33,5 @@ yarn app
     - ~~reducer test~~
     - ~~component test~~
   - Sentry
+    - Hooklara componentDidCatch ile ilgili gelistirme gelecegi zaman tekrar yapacagim.
+      Altarnatif olarak ErrorBoundary kullanabilirsiniz.
