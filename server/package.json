@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "server": "PORT=5050 nodemon server.js",
-    "client": "cd .. && cd client && yarn start",
-    "app": "concurrently \"yarn server\" \"yarn client\""
+    "client": "cd .. && cd client && npm run start",
+    "app": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
