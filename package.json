@@ -6,7 +6,7 @@
     "download": "cd client && yarn",
     "build": "cd client && yarn build",
     "test": "cd client && yarn test",
-    "heroku-postbuild": "cd client && npm install && npm run build && cd ../server  && npm install && npm run app"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "browserslist": {
     "production": [
