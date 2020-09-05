@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "port=5050 nodemon server.js",
+    "server": "PORT=5050 nodemon server.js",
     "client": "cd .. && cd client && yarn start",
     "app": "concurrently \"yarn server\" \"yarn client\""
   },
@@ -17,6 +17,7 @@
     "concurrently": "^5.0.2",
     "express": "^4.17.1",
     "mongoose": "^5.8.4",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
   }
 }

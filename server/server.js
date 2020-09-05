@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 var config = require('./config');
 
@@ -9,14 +10,14 @@ app.use(express.json());
 mongoose
   .connect(config.db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.info('connected to mongoDB'))
-  .catch(error => console.error(error));
+  .catch((error) => console.error(error));
 
 const todoSchema = new mongoose.Schema({
   title: String,
   complete: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const Todo = mongoose.model('todo', todoSchema);
@@ -34,7 +35,7 @@ app.get('/todos', async (req, res) => {
 app.post('/todos', async (req, res) => {
   try {
     const newTodo = new Todo({
-      title: req.body.title
+      title: req.body.title,
     });
     const todo = await newTodo.save();
     return res.status(201).json(todo);
@@ -50,7 +51,7 @@ app.delete('/todos/:id', async (req, res) => {
     await Todo.findByIdAndDelete(id);
 
     return res.json({
-      remove: true
+      remove: true,
     });
   } catch (error) {
     console.error(`Error, delete /todos/:id ==>, ${error}`);
@@ -58,7 +59,13 @@ app.delete('/todos/:id', async (req, res) => {
   }
 });
 
-const port = process.env.port || 5050;
+const port = process.env.PORT || 5050;
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.info(`server is running on ${port}`);

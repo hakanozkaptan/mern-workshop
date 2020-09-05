@@ -20,21 +20,7 @@ yarn app
 
 # NEXT CHAPTERS
 
-- React
-  - ~~Enums~~
-  - ~~PropTypes~~
-  - ~~ES6+ `async await`~~
-  - ~~Styled Component~~
-  - ~~Context Api~~
-    - ~~Context and Provider~~
-  - ~~React Hooks~~
-    - ~~Use Effect~~
-    - ~~Use Reducer~~
-    - ~~Use Memo~~
-  - ~~React Hook Form~~
-  - ~~Test Jest and Enzyme~~
-    - ~~reducer test~~
-    - ~~component test~~
-  - Sentry
-    - Hooklara componentDidCatch ile ilgili gelistirme gelecegi zaman tekrar yapacagim.
-      Altarnatif olarak ErrorBoundary kullanabilirsiniz.
+- mern-todo-app-heroku
+- https://mern-todo-app-heroku.herokuapp.com/ | https://git.heroku.com/mern-todo-app-heroku.git
+
+-- Created mongolab-fluffy-56272 as MONGODB_URI
