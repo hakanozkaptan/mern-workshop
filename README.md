@@ -20,7 +20,4 @@ yarn app
 
 # NEXT CHAPTERS
 
-- mern-todo-app-heroku
-- https://mern-todo-app-heroku.herokuapp.com/ | https://git.heroku.com/mern-todo-app-heroku.git
-
--- Created mongolab-fluffy-56272 as MONGODB_URI
+https://radiant-sierra-82356.herokuapp.com/ | https://git.heroku.com/radiant-sierra-82356.git

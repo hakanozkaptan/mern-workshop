@@ -2,11 +2,15 @@
   "name": "circle-ci",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": "12.14.0",
+    "npm": "4.6.1"
+  },
   "scripts": {
-    "download": "cd client && yarn",
-    "build": "cd client && yarn build",
-    "test": "cd client && yarn test",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "download": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "test": "cd client && npm run test",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "browserslist": {
     "production": [
