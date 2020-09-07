@@ -11,9 +11,9 @@
     "client": "cd client && npm run start",
     "app": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "download": "cd client && yarn",
-    "build": "cd client && yarn build",
-    "test": "cd client && yarn test"
+    "download": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "test": "cd client && npm run test"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +24,6 @@
     "express": "^4.17.1",
     "mongoose": "^5.8.4",
     "nodemon": "^2.0.2",
-    "path": "^0.12.7",
-    "react-scripts": "^3.4.3"
+    "path": "^0.12.7"
   }
 }
