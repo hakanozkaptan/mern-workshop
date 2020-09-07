@@ -8,14 +8,25 @@ import { Loader } from 'components';
 import { ActionEnum } from 'enums/ActionEnum';
 
 const H3 = styled.h3`
-  text-decoration: ${props => (props.complete ? 'line-through' : 'none')};
+  text-decoration: ${(props) => (props.complete ? 'line-through' : 'none')};
 `;
 
-export const Todo = ({ isLoading, todo: { title, complete, _id: id } = {} }) => {
+export const Todo = ({
+  isLoading,
+  todo: { title, complete, _id: id } = {},
+}) => {
   const { dispatch = () => {} } = useContext(Context);
 
   const toogle = async (id, dispatch) => {
-    dispatch({ type: ActionEnum.TOGGLE, payload: id });
+    const updateTodo = await axios.put(`/todos/${id}`, {
+      complete: !complete,
+    });
+
+    if (updateTodo && updateTodo.data.update) {
+      dispatch({ type: ActionEnum.TOGGLE, payload: id });
+    } else {
+      console.info(`${id} is not toogled`);
+    }
   };
 
   const remove = async (id, dispatch) => {
@@ -40,11 +51,16 @@ export const Todo = ({ isLoading, todo: { title, complete, _id: id } = {} }) => 
         onClick={() => remove(id, dispatch)}
       />
       {title}
-      <input type='checkbox' className='m-2 float-right' onChange={() => toogle(id, dispatch)} />
+      <input
+        type='checkbox'
+        className='m-2 float-right'
+        checked={complete}
+        onChange={() => toogle(id, dispatch)}
+      />
     </H3>
   );
 };
 
 Todo.propTypes = {
-  todo: PropTypes.object
+  todo: PropTypes.object,
 };

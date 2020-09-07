@@ -61,6 +61,23 @@ app.delete('/todos/:id', async (req, res) => {
   }
 });
 
+app.put('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const todoUpdate = await Todo.findByIdAndUpdate(id, {
+      complete: req.body.complete,
+    });
+
+    return res.json({
+      update: true,
+    });
+  } catch (err) {
+    console.error(`Error, put /todos/:id ==>, ${error}`);
+    return res.status(500);
+  }
+});
+
 // Serve static files if in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
