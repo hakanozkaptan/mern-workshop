@@ -10,6 +10,8 @@
     "download": "cd client && npm install",
     "build": "cd client && npm run build",
     "test": "cd client && npm run test",
+    "start": "cd server && npm run app",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "browserslist": {
     "production": [
