@@ -1,28 +1,25 @@
 {
-  "name": "circle-ci",
-  "version": "0.1.0",
-  "private": true,
-  "engine": {
-    "node": "12.14.0",
-    "npm": "4.6.1"
-  },
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "download": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "test": "cd client && npm run test",
-    "start": "cd server && npm run app",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "backend": "nodemon server.js",
+    "server": "PORT=5050 nodemon server.js",
+    "client": "cd client && npm run start",
+    "app": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.4",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
   }
 }

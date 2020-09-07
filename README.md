@@ -11,13 +11,7 @@ You need to install `mongodb`, `node` and `yarn` on your pc.
 ## Usage
 
 ```python
-cd server
-
-and run
-
-yarn app
+yarn app 
+or
+npm run app
 ```
-
-# NEXT CHAPTERS
-
-https://radiant-sierra-82356.herokuapp.com/ | https://git.heroku.com/radiant-sierra-82356.git
