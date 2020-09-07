@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "private": true,
   "scripts": {
     "start": "node server.js",
     "backend": "nodemon server.js",
@@ -23,6 +24,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.8.4",
     "nodemon": "^2.0.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-scripts": "^3.4.3"
   }
 }
